@@ -1,0 +1,10 @@
+[server]
+env.prod = false
+env.skipauth = true
+http.port = 8000
+https.port = 8443
+
+[database]
+mongo.url = mongodb://127.0.0.1:27017/database?authSource=admin
+mongo.user = root
+mongo.pwd = toor
