@@ -16,9 +16,11 @@ export class MainController {
     
     /* default */
     this.app.route(RoutePath.home).get(this.mainService.version);
+    console.log(`route created ${RoutePath.home}`);
     
     /* create qr */
     this.app.route(RoutePath.createQr).get(this.createQrService.create);
+    console.log(`route created ${RoutePath.createQr}`);
 
   }
 }
