@@ -1,5 +1,6 @@
 import { Request, Response } from 'express';
 import ResponseModel from '../models/ResponseModel';
+import QRCode  from 'easyqrcodejs-nodejs';
 
 export class CreateQrService {
   public create(req: Request, res: Response) {
@@ -16,7 +17,7 @@ export class CreateQrService {
       logo = req.query.logo ? req.query.logo : "sc_logo_round.png";
     }
 
-    const QRCode = require('easyqrcodejs-nodejs');
+    //const QRCode = require('easyqrcodejs-nodejs');
 
     // Options
     var options = {
@@ -44,7 +45,7 @@ export class CreateQrService {
       logoWidth: 80, // widht. default is automatic width
       logoHeight: 80, // height. default is automatic height
       logoBackgroundColor: '#fffff', // Logo backgroud color, Invalid when `logBgTransparent` is true; default is '#ffffff'
-      logoBackgroundTransparent: false, // Whether use transparent image, default is false
+      logoBackgroundTransparent: true, // Whether use transparent image, default is false
 
 
       // ====== Backgroud Image
