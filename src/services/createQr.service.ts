@@ -3,7 +3,7 @@ import ResponseModel from '../models/ResponseModel';
 import QRCode  from 'easyqrcodejs-nodejs';
 
 export class CreateQrService {
-  public create(req: Request, res: Response) {
+  public async create(req: Request, res: Response) {
     
     /* info 
      * https://www.npmjs.com/package/easyqrcodejs-nodejs 
@@ -120,7 +120,13 @@ export class CreateQrService {
 
     let qrName = new Date().getTime() +'.png';
     qrcode.saveImage({ path: qrName });
-    return ResponseModel.sendResponseOk(res, { generatedName: qrName });
 
+    // Get standard base64 image data url text: 'data:image/png;base64, ...'
+    try {
+      let data = await qrcode.toDataURL();
+      return ResponseModel.sendResponseOk(res, { generatedName: qrName, data: data });
+    }catch(ex){
+      return ResponseModel.sendInternalServerError(res, {ex: ex});
+    }
   }
 }
