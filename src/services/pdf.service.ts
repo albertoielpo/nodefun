@@ -65,6 +65,12 @@ export class PdfService {
     let descParamLabel = "Descrizione parametro";
     let valueParamLabel = "Valore parametro"
 
+    /* footer */
+    let pageLabel = "Page";
+    let ofLabel = "of";
+    let poweredByLabel = "Powered by"
+    let footerLogoImage = logoImage;
+
     let tableData = [];
 
     let jj = (new Date()).getTime();
@@ -204,6 +210,28 @@ export class PdfService {
           }]
         }
       ],
+      footer: function(currentPage, pageCount) {
+        return [
+          {
+            margin: [35, 0, 0, 35],
+            columns: [{ 
+              table: {
+                widths: ["*"],
+                body: [                  
+                  [{
+                    border: [false,false,false,false],
+                    columns : [
+                      { width: '*', text: pageLabel + " " + currentPage.toString() + " " + ofLabel + " " + pageCount, style: "footerBase" },
+                      { width: 100, text: poweredByLabel, style: "footerBase"  },
+                      { width: 50, image: footerLogoImage }
+                    ]
+                  }]
+                ]
+              }
+            }]
+          }
+        ]
+      },
       styles: {
         headerBase: {fontSize: 11, italics: false },
         headerLeft: {fontSize: 10, italics: false, bold: false, alignment: 'left' },
@@ -212,7 +240,8 @@ export class PdfService {
         headerRightGrey: {fontSize: 11, italics: false, bold: false, alignment: 'right', color: 'grey' },
         headerBoldLeft: {fontSize: 11, italics: false, bold: true, alignment: 'left' },
         headerBoldRight: {fontSize: 11, italics: false, bold: true, alignment: 'right' },        
-        headerTitle: {fontSize: 14, bold: true, alignment: 'center'}
+        headerTitle: {fontSize: 14, bold: true, alignment: 'center'},
+        footerBase: {fontSize: 10, italics: false },
       }
     };
 
