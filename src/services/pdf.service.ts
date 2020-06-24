@@ -213,7 +213,7 @@ export class PdfService {
       footer: function(currentPage, pageCount) {
         return [
           {
-            margin: [35, 0, 0, 35],
+            margin: [35, 0, 35, 0],
             columns: [{ 
               table: {
                 widths: ["*"],
@@ -222,8 +222,8 @@ export class PdfService {
                     border: [false,false,false,false],
                     columns : [
                       { width: '*', text: pageLabel + " " + currentPage.toString() + " " + ofLabel + " " + pageCount, style: "footerBase" },
-                      { width: 100, text: poweredByLabel, style: "footerBase"  },
-                      { width: 50, image: footerLogoImage }
+                      { width: 70, text: poweredByLabel, style: "footerBase"  },
+                      { width: 50, image: footerLogoImage, style: "footerBase" }
                     ]
                   }]
                 ]
