@@ -47,6 +47,35 @@ export class PdfService {
     let customerEmailLabel = "Email:"
     let customerEmail = "venturini@consuelo.com";
 
+    /* fifth row */
+    let configurationLabel = "Dati configurazione:";
+    let configurationNameLabel = "Nome configurazione:";
+    let configurationName = "Config.GAAA789420";
+    let configurationDateLabel = "Data configurazione:";
+    let configurationDate = "25/05/2020";
+    let automationTypelabel = "Tipologia automazione";
+    let automationType = "Gate";
+    let controlBoardLabel = "Scheda di controllo:";
+    let controlBoard = "Board-5555";
+    let fwLabel = "FW:";
+    let fw = "ZAW-211";
+
+    /* sixth row - table */
+    let idxLabel = "IDX";
+    let descParamLabel = "Descrizione parametro";
+    let valueParamLabel = "Valore parametro"
+
+    let tableData = [];
+
+    let jj = (new Date()).getTime();
+
+    for(let ii=0; ii<100;ii++,jj+=1000){
+      let idxData = (ii+1);
+      let descParam  = "descrizione "+ jj.toString(36);
+      let valueParam = (Math.random()*100).toFixed(2);
+      tableData.push([{ text: idxData, style: 'headerLeft' }, { text: descParam, style: 'headerLeft' }, { text: valueParam, style: 'headerLeft' }]);
+    }
+
     /* template */
 
     /* table widths (* -> all, auto -> text width, 100=px width) */
@@ -61,12 +90,12 @@ export class PdfService {
         {
           columns: [
             {
-              /* header sx - logo */
+              /* header left - logo */
               image: logoImage,
-              width: 150
+              width: 250
             },
             {
-              /* header dx */
+              /* header right */
               margin: [170, 0, 0, 0],
               table: {
                 widths: ['*'],
@@ -128,6 +157,46 @@ export class PdfService {
                     {text: customerEmailLabel + " " + customerEmail, style: 'headerLeft' }
                   ]
                 }]
+              ]
+            }
+          }]
+        },
+        /* fifth row */
+        {
+          margin: [0, 10, 0, 0],
+          columns: [{ 
+            table: {
+              widths: ["*"],
+              body: [
+                [{ text: configurationLabel, border: borderTop, style: 'headerBoldLeft' }],
+                [{
+                  border: borderMiddle,
+                  columns : [
+                    {text: configurationNameLabel + " "+ configurationName, style: 'headerLeft' },
+                    {text: configurationDateLabel + " "+ configurationDate, style: 'headerLeft' }
+                  ]
+                }],
+                [{
+                  border: borderBottom,
+                  columns : [
+                    {text: automationTypelabel + " "+ automationType, style: 'headerLeft' },
+                    {text: controlBoardLabel + " "+ controlBoard, style: 'headerLeft' },
+                    {text: fwLabel + " "+ fw, style: 'headerLeft' }
+                  ]
+                }]
+              ]
+            }
+          }]
+        },
+        /* sixth row */
+        {
+          margin: [0, 10, 0, 0],
+          columns: [{ 
+            table: {
+              widths: ["*","*","*"],
+              body: [
+                [{ text: idxLabel, style: 'headerBoldLeft' }, { text: descParamLabel, style: 'headerBoldLeft' }, { text: valueParamLabel, style: 'headerBoldLeft' }],
+                ...tableData
               ]
             }
           }]
