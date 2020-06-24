@@ -91,12 +91,13 @@ export class PdfService {
           columns: [
             {
               /* header left - logo */
+              margin: [15, 20, 0, 0],
               image: logoImage,
-              width: 250
+              width: 180
             },
             {
               /* header right */
-              margin: [170, 0, 0, 0],
+              margin: [100, 0, 0, 0],
               table: {
                 widths: ['*'],
                 body: [
@@ -193,7 +194,8 @@ export class PdfService {
           margin: [0, 10, 0, 0],
           columns: [{ 
             table: {
-              widths: ["*","*","*"],
+              headerRows: 1,
+              widths: [50,"*",150],
               body: [
                 [{ text: idxLabel, style: 'headerBoldLeft' }, { text: descParamLabel, style: 'headerBoldLeft' }, { text: valueParamLabel, style: 'headerBoldLeft' }],
                 ...tableData
