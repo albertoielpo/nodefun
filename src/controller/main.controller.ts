@@ -21,6 +21,9 @@ export class MainController {
     this.app.route(RoutePath.home).get(this.mainService.version);
     console.log(`route created ${RoutePath.home}`);
     
+    this.app.route(RoutePath.momentTimezone).get(this.mainService.momentTimezone);
+    console.log(`route created ${RoutePath.momentTimezone}`);
+
     /* create qr */
     this.app.route(RoutePath.createQr).get(this.createQrService.create);
     console.log(`route created ${RoutePath.createQr}`);
